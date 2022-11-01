@@ -104,12 +104,14 @@ app.put("/pet", (req, res) => {
   });
 });
 
-app.get("/pet/<pet_id>", (req, res) => {
+app.get("/pet/:id", (req, res) => {
   let data = [];
+  let pet_id = req.params.id;
 
   db.serialize(() => {
     db.each(
-      "SELECT * FROM pets WHERE pet_ID == <pet_id>",
+      "SELECT * FROM pets WHERE pet_ID == ?",
+      pet_id,
       (err, row) => {
         console.log(row.name);
         data.push(row);
@@ -120,13 +122,14 @@ app.get("/pet/<pet_id>", (req, res) => {
     );
   });
 });
-
-app.delete("/pet/<pet_id>", (req, res) => {
+app.delete("/pet/:id", (req, res) => {
   let data = [];
+  let pet_id = req.params.id;
 
   db.serialize(() => {
     db.each(
-      "DELETE FROM pets WHERE pet_ID == <pet_id>",
+      "DELETE FROM pets WHERE pet_ID == ?",
+      pet_id,
       (err, row) => {
         console.log(row.name);
         data.push(row);
