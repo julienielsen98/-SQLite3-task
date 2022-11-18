@@ -2,7 +2,7 @@
 
 ## Description
 
-Database for the stors to:
+Database for the stores to:
 
 - Registrer/scan new items, and registrer it to a card.
 - The system builds up a collection of items in memory, and records the last four digits of the customers card, the store name, the location of the store, and the date:
